@@ -216,4 +216,7 @@ export class Settings {
     .DEFAULT_GDRIVE_TIMEOUT
     ? parseInt(process.env.DEFAULT_GDRIVE_TIMEOUT)
     : undefined;
+
+  public static readonly REALDEBRID_API_URL =
+    process.env.DEBRIDIO_URL || 'https://api.real-debrid.com/rest/1.0/';
 }

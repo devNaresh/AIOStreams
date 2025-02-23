@@ -65,12 +65,16 @@ export class BaseWrapper {
   }
 
   private getStreamUrl(streamRequest: StreamRequest) {
-    return (
-      this.addonUrl.replace('manifest.json', '') +
-      this.streamPath
-        .replace('{type}', streamRequest.type)
-        .replace('{id}', encodeURIComponent(streamRequest.id))
-    );
+    if (this.addonName === 'RealDebridPlus') {
+      return this.addonUrl.replace('/manifest.json', '');
+    } else {
+      return (
+        this.addonUrl.replace('manifest.json', '') +
+        this.streamPath
+          .replace('{type}', streamRequest.type)
+          .replace('{id}', encodeURIComponent(streamRequest.id))
+      );
+    }
   }
 
   private shouldProxyRequest(url: string): boolean {

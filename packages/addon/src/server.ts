@@ -237,6 +237,10 @@ app.get('/:config/stream/:type/:id.json', (req, res: Response): void => {
       req.get('CF-Connecting-IP') ||
       req.ip;
     configJson.instanceCache = cache;
+    configJson.addons.push({
+      id: 'real-debrid',
+      options: {},
+    });
     const aioStreams = new AIOStreams(configJson);
     aioStreams
       .getStreams(streamRequest)

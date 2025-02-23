@@ -12,6 +12,7 @@ import {
   getStremioJackettStreams,
   getTorboxStreams,
   getTorrentioStreams,
+  getRealDebridPlusStreams,
 } from '@aiostreams/wrappers';
 import {
   Stream,
@@ -935,6 +936,13 @@ export class AIOStreams {
     streamRequest: StreamRequest
   ): Promise<{ addonStreams: ParsedStream[]; addonErrors: string[] }> {
     switch (addon.id) {
+      case 'real-debrid': {
+        return await getRealDebridPlusStreams(
+          this.config,
+          streamRequest,
+          addonId
+        );
+      }
       case 'torbox': {
         return await getTorboxStreams(
           this.config,
@@ -943,14 +951,14 @@ export class AIOStreams {
           addonId
         );
       }
-      case 'torrentio': {
-        return await getTorrentioStreams(
-          this.config,
-          addon.options,
-          streamRequest,
-          addonId
-        );
-      }
+      // case 'torrentio': {
+      //   return await getTorrentioStreams(
+      //     this.config,
+      //     addon.options,
+      //     streamRequest,
+      //     addonId
+      //   );
+      // }
       case 'comet': {
         return await getCometStreams(
           this.config,
@@ -959,14 +967,14 @@ export class AIOStreams {
           addonId
         );
       }
-      case 'mediafusion': {
-        return await getMediafusionStreams(
-          this.config,
-          addon.options,
-          streamRequest,
-          addonId
-        );
-      }
+      // case 'mediafusion': {
+      //   return await getMediafusionStreams(
+      //     this.config,
+      //     addon.options,
+      //     streamRequest,
+      //     addonId
+      //   );
+      // }
       case 'stremio-jackett': {
         return await getStremioJackettStreams(
           this.config,
